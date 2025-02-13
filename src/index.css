@@ -1,0 +1,6 @@
+@import "tailwindcss";
+body {
+  background-image: url("./assets/img/high-angle-solar-pannels-arrangement.jpg");
+  background-repeat: no-repeat;
+  background-size: cover;
+}

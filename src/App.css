@@ -1,0 +1,51 @@
+:root {
+  --primary-color: #538543;
+  --secondary-color: #426835; /* Gris */
+  --font-size: 16px;
+  --padding: 10px;
+
+  overflow: hidden;
+}
+
+.text-korobo {
+  color: var(--primary-color);
+}
+.bg-korobo {
+  background-color: var(--primary-color);
+}
+.button-korobo-outlined {
+  background-color: transparent;
+  border: 1px solid var(--secondary-color);
+  border-radius: 3px;
+  padding: 8px;
+  cursor: pointer;
+  color: var(--secondary-color);
+}
+.button-korobo-outlined:hover {
+  background-color: var(--secondary-color);
+  border: 1px solid var(--secondary-color);
+  border-radius: 3px;
+  padding: 8px;
+  cursor: pointer;
+  color: white;
+}
+.button-korobo {
+  background-color: var(--secondary-color);
+  border: 1px solid var(--secondary-color);
+  border-radius: 3px;
+  padding: 8px;
+  cursor: pointer;
+  color: white;
+}
+.button-korobo:hover {
+  background-color: #35532b;
+  border: 1px solid #35532b;
+  border-radius: 3px;
+  padding: 8px;
+  cursor: pointer;
+  color: white;
+}
+.main-container {
+  background-color: rgba(0, 0, 0, 0.836);
+  padding: 5%;
+}

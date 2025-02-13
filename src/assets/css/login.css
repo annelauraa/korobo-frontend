@@ -1,0 +1,13 @@
+:root {
+  background-color: azure;
+}
+
+input {
+  color: rgb(19, 36, 8);
+}
+input:focus,
+input:focus-visible,
+input:focus-within {
+  box-shadow: none !important;
+  border: none !important;
+}
