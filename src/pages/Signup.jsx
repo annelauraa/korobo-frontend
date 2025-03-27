@@ -1,5 +1,8 @@
 import { useState } from "react";
 import { motion } from "framer-motion";
+import { IoIosEye } from "react-icons/io";
+import { IoIosEyeOff } from "react-icons/io";
+
 
 function Signup() {
   const [formData, setFormData] = useState({
@@ -13,12 +16,10 @@ function Signup() {
     email: false,
     password: false,
     emailInvalid: false,
-
-    // passwordLength: false,
-    // passwordDigit: false,
-    // passwordLetter: false,
-    // passwordSpecial: false,
+    passwordLength: false,
   });
+
+  const [showPassword, setShowPassword] = useState(false); // État pour gérer la visibilité du mot de passe
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -30,12 +31,6 @@ function Signup() {
       password: !formData.password,
       emailInvalid: formData.email && !/^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}$/i.test(formData.email),
       passwordLength: formData.password.length < 6,
-
-      /** Pour renforcer la sécurité (Pour l'à venir) */
-      // passwordDigit: !/\d/.test(formData.password),
-      // passwordLetter: !/[a-zA-Z]/.test(formData.password),
-      // passwordSpecial: !/[!@#$%^&*(),.?":{}|<>]/.test(formData.password),
-      /** */
     };
 
     setErrors(newErrors);
@@ -63,6 +58,11 @@ function Signup() {
     }));
   };
 
+  // Fonction pour basculer la visibilité du mot de passe
+  const togglePasswordVisibility = () => {
+    setShowPassword(!showPassword);
+  };
+
   return (
     <div className="min-h-screen bg-gray-50 flex items-center justify-center">
       <motion.div
@@ -75,6 +75,7 @@ function Signup() {
           Créer un compte
         </h2>
         <form onSubmit={handleSubmit} className="mt-6 space-y-4">
+          {/* Nom de l'entreprise */}
           <motion.div
             initial={{ opacity: 0, x: -30 }}
             animate={{ opacity: 1, x: 0 }}
@@ -88,19 +89,19 @@ function Signup() {
             </label>
             <input
               id="company-name"
-              name="companyName" 
+              name="companyName"
               type="text"
               value={formData.companyName}
               onChange={handleChange}
               className={`mt-1 block w-full px-3 py-2 border rounded-md sm:text-sm ${errors.companyName ? "border-red-500" : "border-gray-300"
                 } focus:outline-none focus:ring-indigo-500 focus:border-indigo-500`}
-              // required
             />
             {errors.companyName && (
               <span className="text-red-500 text-sm">Ce champ est requis</span>
             )}
           </motion.div>
 
+          {/* Email */}
           <motion.div
             initial={{ opacity: 0, x: 30 }}
             animate={{ opacity: 1, x: 0 }}
@@ -120,7 +121,6 @@ function Signup() {
               onChange={handleChange}
               className={`mt-1 block w-full px-3 py-2 border rounded-md sm:text-sm ${errors.email ? "border-red-500" : "border-gray-300"
                 } focus:outline-none focus:ring-indigo-500 focus:border-indigo-500`}
-              // required
             />
             {errors.email && !formData.email && (
               <span className="text-red-500 text-sm">Ce champ est requis</span>
@@ -132,6 +132,7 @@ function Signup() {
             )}
           </motion.div>
 
+          {/* Mot de passe */}
           <motion.div
             initial={{ opacity: 0, x: -30 }}
             animate={{ opacity: 1, x: 0 }}
@@ -143,16 +144,28 @@ function Signup() {
             >
               Mot de passe
             </label>
-            <input
-              id="password"
-              name="password"
-              type="password"
-              value={formData.password}
-              onChange={handleChange}
-              className={`mt-1 block w-full px-3 py-2 border rounded-md sm:text-sm ${errors.password ? "border-red-500" : "border-gray-300"
-                } focus:outline-none focus:ring-indigo-500 focus:border-indigo-500`}
-              // required
-            />
+            <div className="relative">
+              <input
+                id="password"
+                name="password"
+                type={showPassword ? "text" : "password"} // Si showPassword est true, le type devient "text"
+                value={formData.password}
+                onChange={handleChange}
+                className={`mt-1 block w-full px-3 py-2 border rounded-md sm:text-sm ${errors.password ? "border-red-500" : "border-gray-300"
+                  } focus:outline-none focus:ring-indigo-500 focus:border-indigo-500`}
+              />
+              <button
+                type="button"
+                onClick={togglePasswordVisibility}
+                className="absolute inset-y-0 right-0 pr-3 flex items-center text-gray-500"
+              >
+                {showPassword ? (
+                  <IoIosEye />
+                ) : (
+                  <IoIosEyeOff />
+                )}
+              </button>
+            </div>
             {errors.password && (
               <span className="text-red-500 text-sm">Ce champ est requis<br /></span>
             )}
@@ -171,6 +184,7 @@ function Signup() {
           >
             Créer un compte
           </motion.button>
+          <span className="block text-sm font-medium text-gray-900">Si vous avez déjà un compte alors, <a className="text-korobo" href="/login">Cliquez ici</a></span>
         </form>
       </motion.div>
     </div>
