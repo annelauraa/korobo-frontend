@@ -9,7 +9,8 @@ function OfficialPage() {
       {/* Corps de page */}
       <motion.div className=" main-container py-12 sm:py-16 text-white">
         <div className="min-h-screen max-w-7xl mx-auto px-6 lg:px-8">
-          <motion.section className="ml-35 mt-15">
+          {/* <motion.section className="ml-35 mt-15"> */}
+          <motion.section className="flex flex-col p-10 gap-3">
             <motion.h1
               initial={{ opacity: 0, scale: 0.8 }}
               animate={{ opacity: 1, scale: 1 }}
@@ -17,7 +18,8 @@ function OfficialPage() {
               className="text-5xl "
             >
               <span className="text-white">Bienvenue sur</span>
-              <br />
+            </motion.h1>
+            <motion.h1>
               <span className="text-8xl font-bold text-korobo "> KOROBO</span>
             </motion.h1>
             <motion.p
@@ -28,16 +30,17 @@ function OfficialPage() {
             >
               L`application KOROBO vous permet de gérer efficacement la
               maintenance de vos sites photovoltaïques.
-              <hr className="mt-5 w-50 text-stone-600" />
             </motion.p>
-            <motion.button
+            <hr className="mt-5 w-50 text-stone-600" />
+            <motion.a
+              href="/signup"
               initial={{ opacity: 0, scale: 0.8 }}
               animate={{ opacity: 1, scale: 1 }}
               transition={{ duration: 0.8 }}
-              className="mt-4 button-korobo"
+              className="mt-4 button-korobo lg:w-35 md:w-35 xs:w-full"
             >
               Créer un compte
-            </motion.button>
+            </motion.a>
           </motion.section>
           {/* Section de présentation */}
           {/* <motion.section
